@@ -97,7 +97,7 @@ class Cart extends Component {
                 <Modal title="Basic Modal" visible={this.state.isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                     <img src={'./address'} />
 
-                    <p>The payment gateway is temporarily down. Please do the payment on the above UPI number or scan the QR code to do the payment. After doing the Payment please send the screenshot of the payment on the given email id : upscbasicfunda.management@gmail.com<br>
+                    <p>The payment gateway is temporarily down. Please do the payment on the above UPI number or scan the QR code to do the payment. After doing the Payment please send the screenshot of the payment on the given email id : upscbasicfunda@gmail.com<br>
                     </br>
                     Regards
                     <br />
