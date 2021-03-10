@@ -80,12 +80,12 @@ class Cart extends Component {
         //     setIsModalVisible(true);
         // };
 
-        const handleOk = () => {
+        handleOk = () => {
 
             this.setState({isModalVisible : false});
         };
 
-        const handleCancel = () => {
+        handleCancel = () => {
             this.setState({isModalVisible : false});
         };
 
