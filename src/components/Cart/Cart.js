@@ -95,7 +95,7 @@ class Cart extends Component {
                     Open Modal
       </Button> */}
                 <Modal title="Basic Modal" visible={this.state.isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                    <img src={'./address'} />
+                    <img src={''} />
 
                     <p>The payment gateway is temporarily down. Please do the payment on the above UPI number or scan the QR code to do the payment. After doing the Payment please send the screenshot of the payment on the given email id : upscbasicfunda@gmail.com<br>
                     </br>
@@ -109,43 +109,43 @@ class Cart extends Component {
 
     }
 
-    displayRazorpa = async (info) => {
-        const res = await this.loadScipt('https://checkout.razorpay.com/v1/checkout.js')
-        if (!res) {
-            alert('razorpay sdk failed to load. are you online?')
-            return
-        }
-        const options = {
-            "key": 'rzp_test_d60JA5dzjyDyZ0',
-            "amount": "50000",
-            "currency": "INR",
-            "name": "UPSC BASIC FUNDA",
-            "description": "Test Transaction",
-            "image": image,
-            "order_id": info.order_id.id,
-            "handler": function (response) {
-                axios.post('http://54.202.69.72/api/cart/confirm-payment/', {
-                    "razorpay_order_id": response.razorpay_order_id,
-                    "razorpay_payment_id": response.razorpay_payment_id,
-                    "razorpay_signature": response.razorpay_signature
-                }).then(() => history.push(`/successful/${response.razorpay_order_id}`)).catch((err) => alert(err.message))
+    // displayRazorpa = async (info) => {
+    //     const res = await this.loadScipt('https://checkout.razorpay.com/v1/checkout.js')
+    //     if (!res) {
+    //         alert('razorpay sdk failed to load. are you online?')
+    //         return
+    //     }
+    //     const options = {
+    //         "key": 'rzp_test_d60JA5dzjyDyZ0',
+    //         "amount": "50000",
+    //         "currency": "INR",
+    //         "name": "UPSC BASIC FUNDA",
+    //         "description": "Test Transaction",
+    //         "image": image,
+    //         "order_id": info.order_id.id,
+    //         "handler": function (response) {
+    //             axios.post('http://54.202.69.72/api/cart/confirm-payment/', {
+    //                 "razorpay_order_id": response.razorpay_order_id,
+    //                 "razorpay_payment_id": response.razorpay_payment_id,
+    //                 "razorpay_signature": response.razorpay_signature
+    //             }).then(() => history.push(`/successful/${response.razorpay_order_id}`)).catch((err) => alert(err.message))
 
-            },
-            "prefill": {
-                "name": this.state.user.username, //change to name after deployment of first_name in backend
-                "email": this.state.user.email,
-                "contact": this.state.user.mobile
-            },
-            "notes": {
-                "address": "Razorpay Corporate Office"
-            },
-            "theme": {
-                "color": "#883FF6"
-            }
-        };
-        var rzp1 = new window.Razorpay(options);
-        rzp1.open()
-    }
+    //         },
+    //         "prefill": {
+    //             "name": this.state.user.username, //change to name after deployment of first_name in backend
+    //             "email": this.state.user.email,
+    //             "contact": this.state.user.mobile
+    //         },
+    //         "notes": {
+    //             "address": "Razorpay Corporate Office"
+    //         },
+    //         "theme": {
+    //             "color": "#883FF6"
+    //         }
+    //     };
+    //     var rzp1 = new window.Razorpay(options);
+    //     rzp1.open()
+    // }
 
     loadScipt = (src) => {
         return new Promise(resolve => {
