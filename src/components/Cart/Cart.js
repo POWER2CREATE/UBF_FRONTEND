@@ -10,7 +10,7 @@ import SideNav from '../SideNav';
 import { Button } from 'react-bootstrap';
 import 'antd/dist/antd.css';
 import { Modal } from 'antd';
-
+import upi from '../../images/UPI.jpeg'
 
 class Cart extends Component {
     state = { items: [], user: [], err: '', validate: 'false', message: "", promocode: "", showtotal: ""  ,isModalVisible : true }
@@ -31,10 +31,12 @@ class Cart extends Component {
                 'Content-Type': 'application/json',
                 'Authorization': `token ${localStorage.getItem('token')}`
             }
-        }).then((res) => this.displayRazorpa(res.data))
+        }).then((res) => this.displayRazorpay(res.data))
     }
-    displayRazorpay = async () => {
 
+
+    displayRazorpay = () => {
+        console.log(this.state.isModalVisible);
 
         //  const res = await this.loadScipt('https://checkout.razorpay.com/v1/checkout.js')
         //  if(!res){
@@ -80,32 +82,38 @@ class Cart extends Component {
         //     setIsModalVisible(true);
         // };
 
-        handleOk = () => {
+        Modal.info({
+            title: 'Payment',
+            width : 700,
+            content: (
+              <div>
+                    <h5>The payment gateway is temporarily down. Please do the payment on the above UPI number or scan the QR code to do the payment. After doing the Payment please send the screenshot of the payment on the given <h3>email id : upscbasicfunda@gmail.com</h3><br>
+                     </br>
+                     Regards
+                     <br />
+                     Team P2C
+                     </h5>
+                <img src={upi} />
+              
+              </div>
+            ),
+            onOk() {},
+          });
 
-            this.setState({isModalVisible : false});
-        };
+        // return (
+        //     <>
+        //         <Modal title="" visible={this.state.isModalVisible} onOk={this.handleOk} onCancel={this.handleCancel}>
+        //             
 
-        handleCancel = () => {
-            this.setState({isModalVisible : false});
-        };
-
-        return (
-            <>
-                {/* <Button type="primary" onClick={showModal}>
-                    Open Modal
-      </Button> */}
-                <Modal title="Basic Modal" visible={this.state.isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                    <img src={''} />
-
-                    <p>The payment gateway is temporarily down. Please do the payment on the above UPI number or scan the QR code to do the payment. After doing the Payment please send the screenshot of the payment on the given email id : upscbasicfunda@gmail.com<br>
-                    </br>
-                    Regards
-                    <br />
-                    Team P2C
-                    </p>
-                </Modal>
-            </>
-        );
+        //             <p>The payment gateway is temporarily down. Please do the payment on the above UPI number or scan the QR code to do the payment. After doing the Payment please send the screenshot of the payment on the given email id : upscbasicfunda@gmail.com<br>
+        //             </br>
+        //             Regards
+        //             <br />
+        //             Team P2C
+        //             </p>
+        //         </Modal>
+        //     </>
+        // );
 
     }
 
