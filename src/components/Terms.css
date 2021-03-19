@@ -1,16 +1,25 @@
 .header-terms{
-    background-image: url(../images/terms\ and\ conditions.png);
-    background-size: cover;
-    -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  height: 55vh;
-  background-position: right;
+  background-image: url(../images/terms\ and\ conditions.png);
+  background-size: cover;
+  -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+height: 55vh;
+background-position: right;
+}
+.font-size-12{
+font-size: 15px;
+}
+.font-size-17{
+font-size: 17px;
 }
 @media(max-width:444px){
-  .header-terms{
-      background: url(../images/terms\ and\ conditionsmobile.png);
-      height: 44vh;
-      background-size: cover;
-  }
+.header-terms{
+    background: url(../images/terms\ and\ conditionsmobile.png);
+    height: 44vh;
+    background-size: cover;
+}
+.small-screen-s{
+  padding-left:50px;
+}
 }

@@ -116,7 +116,7 @@ class SideNav extends React.Component {
                   </div>
                 </div>
               </li>
-              {/* <li>
+              <li>
                 <div className="position-relative sidenav-icon-1">
                   <Link
                     to="/terms"
@@ -130,7 +130,7 @@ class SideNav extends React.Component {
                     T&C's
                   </div>
                 </div>
-              </li> */}
+              </li>
               {/* <li>
                 <div className="position-relative sidenav-icon-1">
                   <Link

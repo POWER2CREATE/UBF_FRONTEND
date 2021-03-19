@@ -9,11 +9,6 @@ import Popup from '../Popup';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-
-import 'antd/dist/antd.css';
-import { Modal } from 'antd';
-import upi from '../../images/UPI.jpeg'
-
 var file=[];
 
 var pdfnumber=[];
@@ -27,63 +22,44 @@ class Summary extends React.Component {
         }}).then(res=>this.setState({res:res.data})) 
         axios.get(`https://api.upscbasicfunda.com/api/core/users/${localStorage.getItem('userid')}`).then(res=>this.setState({user:res.data}))  
     }
-    displayRazorpay =async (info)=>{
-    //     this.setState({spinn:false})
-    //     const res = await this.loadScipt('https://checkout.razorpay.com/v1/checkout.js')
-    //     if(!res){
-    //         alert ('razorpay sdk failed to load. are you online?')
-    //         return
-    //     }
-    //    const options = {
-    //        "key": 'rzp_test_d60JA5dzjyDyZ0', 
-    //        "amount": "50000",
-    //        "currency": "INR",
-    //        "name": "UPSC BASIC FUNDA",
-    //        "description": "Test Transaction",
-    //        "image": "https://example.com/your_logo",
-    //        "order_id":info.order_id.id,
-    //        "handler": function (response){
-    //            axios.post('https://api.upscbasicfunda.com/api/cart/confirm-payment/',{
-    //                     "razorpay_order_id":response.razorpay_order_id,
-    //                     "razorpay_payment_id":response.razorpay_payment_id,
-    //                     "razorpay_signature":response.razorpay_signature
-    //                 }).then(()=>history.push(`/successful/${response.razorpay_order_id}`)).catch((err)=>{
-    //                     history.push('/')
-    //                     alert("Transaction was unsuccessful, if any deductions has been done it will be refunded in 5-10 days")})
-    //        },
-    //        "prefill": {
-    //         "name": this.state.user.username,
-    //         "email": this.state.user.email,
-    //         "contact": this.state.user.mobile
-    //        },
-    //        "notes": {
-    //            "address": "Razorpay Corporate Office"
-    //        },
-    //        "theme": {
-    //            "color": "#F37254"
-    //        }
-    //    };
-    //    var rzp1 = new window.Razorpay(options);
-    //    rzp1.open()
-
-    
-    Modal.info({
-        title: 'Payment',
-        width : 700,
-        content: (
-          <div>
-                <h5>The payment gateway is temporarily down. Please do the payment on the above UPI number or scan the QR code to do the payment. After doing the Payment please send the screenshot of the payment on the given <h3>email id : upscbasicfunda@gmail.com</h3><br>
-                 </br>
-                 Regards
-                 <br />
-                 Team P2C
-                 </h5>
-            <img src={upi} />
-          
-          </div>
-        ),
-        onOk() {},
-      });
+    displayRazorpay=async (info)=>{
+        this.setState({spinn:false})
+        const res = await this.loadScipt('https://checkout.razorpay.com/v1/checkout.js')
+        if(!res){
+            alert ('razorpay sdk failed to load. are you online?')
+            return
+        }
+       const options = {
+           "key": 'rzp_test_d60JA5dzjyDyZ0', 
+           "amount": "50000",
+           "currency": "INR",
+           "name": "UPSC BASIC FUNDA",
+           "description": "Test Transaction",
+           "image": "https://example.com/your_logo",
+           "order_id":info.order_id.id,
+           "handler": function (response){
+               axios.post('https://api.upscbasicfunda.com/api/cart/confirm-payment/',{
+                        "razorpay_order_id":response.razorpay_order_id,
+                        "razorpay_payment_id":response.razorpay_payment_id,
+                        "razorpay_signature":response.razorpay_signature
+                    }).then(()=>history.push(`/successful/${response.razorpay_order_id}`)).catch((err)=>{
+                        history.push('/')
+                        alert("Transaction was unsuccessful, if any deductions has been done it will be refunded in 5-10 days")})
+           },
+           "prefill": {
+            "name": this.state.user.username,
+            "email": this.state.user.email,
+            "contact": this.state.user.mobile
+           },
+           "notes": {
+               "address": "Razorpay Corporate Office"
+           },
+           "theme": {
+               "color": "#F37254"
+           }
+       };
+       var rzp1 = new window.Razorpay(options);
+       rzp1.open()
    }
    
    loadScipt=(src)=>{

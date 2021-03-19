@@ -117,11 +117,11 @@ class Header extends React.Component {
                 Contact Us
               </Link>
             </li>
-            {/* <li>
+            <li>
               <Link to="/terms" className="list hide-icon">
-                T&Cs
+                Terms & Conditions
               </Link>
-            </li> */}
+            </li>
             {/* <li>
               <Link to="/join" className="list hide-icon">
                 Join our Team
